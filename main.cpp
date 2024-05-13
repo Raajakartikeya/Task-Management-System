@@ -8,18 +8,18 @@ class Task;
 class TaskManagementSystem;
 class Task
 {
-    int id;
+    string id;
     string title;
     string description;
 
 public:
-    Task(int id, string title, string description)
+    Task(string id, string title, string description)
     {
         this->id = id;
         this->title = title;
         this->description = description;
     }
-    int getID()
+    string getID()
     {
         return id;
     }
@@ -68,7 +68,7 @@ public:
     {
         tasks.push_back(task);
     }
-    void deleteTask(int id)
+    void deleteTask(string id)
     {
         for (int i = 0; i < tasks.size(); i++)
         {
@@ -103,12 +103,12 @@ class TaskManagementSystem
     }
     void addTask(int i)
     {
-        int inputID;
+        string inputID;
         string inputTaskName;
         string inputTaskDescription;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
         cout << "\n\t\tEnter the task ID to be added:";
-        cin >> inputID;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, inputID);
         cout << "\n\t\tEnter the task name to be added:";
         getline(cin, inputTaskName);
         cout << "\n\t\tEnter the task description to be added:";
@@ -133,9 +133,10 @@ class TaskManagementSystem
             }
             else if (choice == 2)
             {
-                int deleteID;
-                cout<<"\n\t\tEnter id to be deleted:";
-                cin>>deleteID;
+                string deleteID;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                cout << "\n\t\tEnter the task ID to be deleted:";
+                getline(cin, deleteID);
                 users[i].deleteTask(deleteID);
             }
             else if (choice == 3)
